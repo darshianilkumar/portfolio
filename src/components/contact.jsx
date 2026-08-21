@@ -1,173 +1,21 @@
-
-
-// function contact(){
-//   return(
-//     <>
-    
-//     </>
-//   )
-// }
-// export default contact;
-
-// import "./Contact.css";
-// import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaGithub, FaLinkedin } from "react-icons/fa";
-
-// function Contact() {
-//   return (
-//     <section className="contact" id="contact">
-//       <div className="contact-container">
-//         <h1>Get In Touch</h1>
-//         <p>
-//           I'm always open to internship opportunities, full-time roles,
-//           freelance work, and collaborations. Feel free to reach out!
-//         </p>
-
-//         <div className="contact-content">
-//           {/* Contact Details */}
-//           <div className="contact-info">
-//             <div className="card">
-//               {/* <FaEnvelope className="icon" /> */}
-//               <div>
-//                 <h3>Email</h3>
-//                 <p>darshianilkumarak26@gmail.com</p>
-//               </div>
-//             </div>
-
-//             <div className="card">
-//               {/* <FaPhoneAlt className="icon" /> */}
-//               <div>
-//                 <h3>Phone</h3>
-//                 <p>+91 9133582581</p>
-//               </div>
-//             </div>
-
-//             <div className="card">
-//               {/* <FaMapMarkerAlt className="icon" /> */}
-//               <div>
-//                 <h3>Location</h3>
-//                 <p>Hyderabad, Telangana, India</p>
-//               </div>
-//             </div>
-
-//             <div className="social-icons">
-//               <a
-//                 href="https://github.com/yourusername"
-//                 target="_blank"
-//                 rel="noreferrer"
-//               >
-//                 {/* <FaGithub /> */}
-//               </a>
-
-//               <a
-//                 href="https://linkedin.com/in/yourusername"
-//                 target="_blank"
-//                 rel="noreferrer"
-//               >
-//                 {/* <FaLinkedin /> */}
-//               </a>
-//             </div>
-//           </div>
-
-//           {/* Contact Form */}
-//           <form className="contact-form">
-//             <input type="text" placeholder="Your Name" required />
-//             <input type="email" placeholder="Your Email" required />
-//             <input type="text" placeholder="Subject" />
-//             <textarea rows="5" placeholder="Your Message"></textarea>
-
-//             <button type="submit">Send Message</button>
-//           </form>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }
-
-// export default Contact;
-
-
-// function Contact() {
-//   const form = useRef();
-
-//   function sendEmail(e) {
-//     e.preventDefault();
-
-//     emailjs
-//       .sendForm(
-//         "service_pshmfi5",
-//         "YOUR_TEMPLATE_ID",
-//         form.current,
-//         "YOUR_PUBLIC_KEY"
-//       )
-//       .then(
-//         function (result) {
-//           alert("Message Sent Successfully!");
-//           console.log(result.text);
-//         },
-//         function (error) {
-//           alert("Failed to send message!");
-//           console.log(error.text);
-//         }
-//       );
-
-//     e.target.reset();
-//   }}
-
-// function Contact() {
-//   const form = useRef();
-
-//   function sendEmail(e) {
-//     e.preventDefault();
-
-//     emailjs
-//       .sendForm(
-//         "YOUR_SERVICE_ID",
-//         "YOUR_TEMPLATE_ID",
-//         form.current,
-//         "YOUR_PUBLIC_KEY"
-//       )
-//       .then(
-//         function (result) {
-//           alert("Message Sent Successfully!");
-//           console.log(result.text);
-//         },
-//         function (error) {
-//           alert("Failed to send message!");
-//           console.log(error.text);
-//         }
-//       );
-
-//     e.target.reset();
-//   }}
-
-
-
 import emailjs from '@emailjs/browser'
-
-import { useState,useRef,useEffect } from "react";
-
-
-
-
+import { useState, useRef, useEffect } from "react";
 
 function Contact() {
-
-  const form=useRef();
+  const form = useRef();
 
   function sendEmail(e) {
-
     e.preventDefault();
-    emailjs.sendForm("service_v2ulvi4","template_jmxh0tj",form.current,"qqhogW7Hw5VbsnRSs").then(
-      ()=>{
+    emailjs.sendForm("service_v2ulvi4", "template_jmxh0tj", form.current, "qqhogW7Hw5VbsnRSs").then(
+      () => {
         alert("message sent successfully");
-        form.current.reser();
-      },(error)=>{
-        alert("failed to sent message,please try again",error.text);
+        form.current.reset();
+      }, (error) => {
+        alert("failed to sent message,please try again", error.text);
       }
     )
-
   }
-  // Add state for interactive features
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -183,7 +31,6 @@ function Contact() {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
-  // Intersection Observer for scroll animations
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -201,7 +48,6 @@ function Contact() {
     return () => observer.disconnect();
   }, []);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -211,16 +57,13 @@ function Contact() {
     }
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('loading');
 
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    // Success simulation
     setSubmitStatus('success');
     setFormData({ name: '', email: '', subject: '', message: '' });
     setCharCount(0);
@@ -231,7 +74,6 @@ function Contact() {
     }, 3000);
   };
 
-  // Mouse move effect for interactive background
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     setMousePosition({
@@ -240,7 +82,6 @@ function Contact() {
     });
   };
 
-  // Social media links with icons
   const socialLinks = [
     { icon: '🐙', label: 'GitHub', url: 'https://github.com/yourusername', color: '#4a7cf7' },
     { icon: '💼', label: 'LinkedIn', url: 'https://linkedin.com/in/yourusername', color: '#0a66c2' },
@@ -251,7 +92,6 @@ function Contact() {
   return (
     <section className={`contact ${isVisible ? 'visible' : ''}`} id="contact" ref={sectionRef}>
       <div className="contact-container">
-        {/* Animated particles background */}
         <div className="contact-particles">
           <div className="particle particle-1"></div>
           <div className="particle particle-2"></div>
@@ -260,7 +100,6 @@ function Contact() {
           <div className="particle particle-5"></div>
         </div>
 
-        {/* Glowing orb effect */}
         <div className="glow-orb"></div>
 
         <h1 className="contact-title">
@@ -277,7 +116,6 @@ function Contact() {
         </p>
 
         <div className="contact-content" onMouseMove={handleMouseMove}>
-          {/* Dynamic gradient overlay */}
           <div 
             className="dynamic-overlay"
             style={{
@@ -285,7 +123,6 @@ function Contact() {
             }}
           />
 
-          {/* Contact Details */}
           <div className="contact-info">
             <div 
               className={`card ${hoveredCard === 0 ? 'hovered' : ''}`}
@@ -338,7 +175,6 @@ function Contact() {
               </div>
             </div>
 
-            {/* Availability status with animated pulse */}
             <div className="status-card" style={{ animationDelay: '0.4s' }}>
               <div className="status-content">
                 <div className="status-dot-wrapper">
@@ -352,7 +188,6 @@ function Contact() {
               </div>
             </div>
 
-            {/* Social Icons with animated tooltips */}
             <div className="social-section" style={{ animationDelay: '0.5s' }}>
               <p className="social-label">
                 <span className="label-icon">🤝</span>
@@ -381,8 +216,7 @@ function Contact() {
             </div>
           </div>
 
-          {/* Contact Form with enhanced interactions */}
-          <form ref={form} onSubmit={sendEmail} className="contact-form" >
+          <form ref={form} onSubmit={sendEmail} className="contact-form">
             <div className="form-header">
               <h3>
                 <span className="form-icon">📝</span>
@@ -498,7 +332,6 @@ function Contact() {
           </form>
         </div>
 
-        {/* Footer note with animated border */}
         <div className="contact-footer">
           <span className="footer-emoji">⚡</span>
           <span>Available for immediate collaboration</span>
@@ -528,7 +361,6 @@ function Contact() {
           z-index: 1;
         }
 
-        /* Animated Particles */
         .contact-particles {
           position: absolute;
           top: 0;
@@ -561,7 +393,6 @@ function Contact() {
           100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
         }
 
-        /* Glow Orb */
         .glow-orb {
           position: absolute;
           width: 300px;
