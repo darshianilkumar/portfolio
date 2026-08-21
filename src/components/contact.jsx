@@ -10,10 +10,11 @@ function Contact() {
       () => {
         alert("message sent successfully");
         form.current.reset();
-      }, (error) => {
-        alert("failed to sent message,please try again", error.text);
+      }, 
+      (error) => {
+        alert("failed to sent message, please try again", error.text);
       }
-    )
+    );
   }
 
   const [formData, setFormData] = useState({
@@ -55,23 +56,6 @@ function Contact() {
     if (name === 'message') {
       setCharCount(value.length);
     }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('loading');
-
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setSubmitStatus('success');
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setCharCount(0);
-    
-    setTimeout(() => {
-      setSubmitStatus(null);
-      setIsSubmitting(false);
-    }, 3000);
   };
 
   const handleMouseMove = (e) => {
@@ -348,19 +332,16 @@ function Contact() {
           transform: translateY(30px);
           transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         .contact.visible {
           opacity: 1;
           transform: translateY(0);
         }
-
         .contact-container {
           max-width: 1200px;
           margin: 0 auto;
           position: relative;
           z-index: 1;
         }
-
         .contact-particles {
           position: absolute;
           top: 0;
@@ -370,7 +351,6 @@ function Contact() {
           pointer-events: none;
           overflow: hidden;
         }
-
         .particle {
           position: absolute;
           width: 4px;
@@ -379,20 +359,17 @@ function Contact() {
           border-radius: 50%;
           animation: floatParticle 15s infinite linear;
         }
-
         .particle-1 { left: 10%; top: 20%; animation-delay: 0s; }
         .particle-2 { left: 25%; top: 60%; animation-delay: 3s; width: 6px; height: 6px; }
         .particle-3 { left: 80%; top: 30%; animation-delay: 6s; }
         .particle-4 { left: 65%; top: 80%; animation-delay: 9s; width: 5px; height: 5px; }
         .particle-5 { left: 45%; top: 10%; animation-delay: 12s; }
-
         @keyframes floatParticle {
           0% { transform: translateY(0) rotate(0deg); opacity: 0; }
           10% { opacity: 1; }
           90% { opacity: 1; }
           100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
         }
-
         .glow-orb {
           position: absolute;
           width: 300px;
@@ -404,13 +381,11 @@ function Contact() {
           pointer-events: none;
           animation: orbFloat 20s infinite ease-in-out;
         }
-
         @keyframes orbFloat {
           0%, 100% { transform: translate(0, 0) scale(1); }
           33% { transform: translate(-50px, 30px) scale(1.1); }
           66% { transform: translate(30px, -20px) scale(0.9); }
         }
-
         .contact-title {
           font-size: 1.8rem;
           font-weight: 700;
@@ -429,24 +404,20 @@ function Contact() {
           color: transparent;
           animation: gradientShift 3s ease infinite;
         }
-
         @keyframes gradientShift {
           0%, 100% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
         }
-
         .title-wave {
           display: inline-block;
           animation: wave 2s infinite;
           font-size: 3rem;
         }
-
         @keyframes wave {
           0%, 100% { transform: rotate(0deg); }
           25% { transform: rotate(15deg); }
           75% { transform: rotate(-15deg); }
         }
-
         .title-underline {
           display: block;
           width: 80px;
@@ -456,12 +427,10 @@ function Contact() {
           border-radius: 4px;
           animation: underlinePulse 2s infinite;
         }
-
         @keyframes underlinePulse {
           0%, 100% { width: 80px; opacity: 1; }
           50% { width: 120px; opacity: 0.7; }
         }
-
         .contact-description {
           text-align: center;
           color: #8899bb;
@@ -476,16 +445,13 @@ function Contact() {
           flex-wrap: wrap;
           padding: 0 20px;
         }
-
         .pulse-icon {
           animation: iconPulse 2s infinite;
         }
-
         @keyframes iconPulse {
           0%, 100% { transform: scale(1); }
           50% { transform: scale(1.2); }
         }
-
         .typing-cursor {
           display: inline-block;
           width: 3px;
@@ -494,12 +460,10 @@ function Contact() {
           animation: cursorBlink 1s infinite;
           margin-left: 4px;
         }
-
         @keyframes cursorBlink {
           0%, 100% { opacity: 1; }
           50% { opacity: 0; }
         }
-
         .contact-content {
           display: grid;
           grid-template-columns: 1fr 1.5fr;
@@ -514,12 +478,10 @@ function Contact() {
           overflow: hidden;
           transition: all 0.3s;
         }
-
         .contact-content:hover {
           border-color: rgba(74, 124, 247, 0.15);
           box-shadow: 0 12px 60px rgba(0, 0, 0, 0.4);
         }
-
         .dynamic-overlay {
           position: absolute;
           top: 0;
@@ -529,13 +491,11 @@ function Contact() {
           pointer-events: none;
           transition: 0.3s;
         }
-
         .contact-info {
           display: flex;
           flex-direction: column;
           gap: 15px;
         }
-
         .card {
           background: rgba(10, 12, 25, 0.6);
           border-radius: 18px;
@@ -551,12 +511,10 @@ function Contact() {
           opacity: 0;
           animation: cardSlideIn 0.6s ease forwards;
         }
-
         @keyframes cardSlideIn {
           from { opacity: 0; transform: translateX(-20px); }
           to { opacity: 1; transform: translateX(0); }
         }
-
         .card::before {
           content: '';
           position: absolute;
@@ -568,17 +526,14 @@ function Contact() {
           opacity: 0;
           transition: 0.3s;
         }
-
         .card.hovered::before {
           opacity: 1;
         }
-
         .card.hovered {
           transform: translateX(8px) scale(1.02);
           border-color: rgba(74, 124, 247, 0.3);
           box-shadow: 0 8px 30px rgba(74, 124, 247, 0.15);
         }
-
         .card-icon-wrapper {
           position: relative;
           width: 50px;
@@ -591,18 +546,15 @@ function Contact() {
           border-radius: 14px;
           transition: 0.3s;
         }
-
         .card.hovered .card-icon-wrapper {
           background: rgba(74, 124, 247, 0.15);
           transform: scale(1.1);
         }
-
         .card-icon {
           font-size: 1.8rem;
           position: relative;
           z-index: 2;
         }
-
         .card-glow {
           position: absolute;
           width: 100%;
@@ -612,15 +564,12 @@ function Contact() {
           opacity: 0;
           transition: 0.3s;
         }
-
         .card.hovered .card-glow {
           opacity: 1;
         }
-
         .card-content {
           flex: 1;
         }
-
         .card-content h3 {
           font-size: 0.8rem;
           color: #556688;
@@ -629,14 +578,12 @@ function Contact() {
           letter-spacing: 1.5px;
           font-weight: 600;
         }
-
         .card-content p {
           color: #e0e8f0;
           font-size: 0.95rem;
           margin: 0;
           font-weight: 500;
         }
-
         .card-hint {
           font-size: 0.7rem;
           color: #4a7cf7;
@@ -645,11 +592,9 @@ function Contact() {
           display: block;
           margin-top: 4px;
         }
-
         .card.hovered .card-hint {
           opacity: 1;
         }
-
         .status-card {
           background: rgba(74, 124, 247, 0.06);
           border-radius: 18px;
@@ -658,20 +603,17 @@ function Contact() {
           opacity: 0;
           animation: cardSlideIn 0.6s ease forwards;
         }
-
         .status-content {
           display: flex;
           align-items: center;
           gap: 15px;
         }
-
         .status-dot-wrapper {
           position: relative;
           width: 14px;
           height: 14px;
           flex-shrink: 0;
         }
-
         .status-dot {
           width: 14px;
           height: 14px;
@@ -681,7 +623,6 @@ function Contact() {
           position: relative;
           z-index: 2;
         }
-
         .status-pulse {
           position: absolute;
           top: -2px;
@@ -692,34 +633,28 @@ function Contact() {
           border-radius: 50%;
           animation: statusPulse 2s infinite;
         }
-
         @keyframes statusPulse {
           0% { transform: scale(1); opacity: 1; }
           100% { transform: scale(1.8); opacity: 0; }
         }
-
         .status-text {
           display: flex;
           flex-direction: column;
           gap: 2px;
         }
-
         .status-label {
           color: #e0e8f0;
           font-weight: 500;
           font-size: 0.95rem;
         }
-
         .status-time {
           color: #556688;
           font-size: 0.8rem;
         }
-
         .social-section {
           opacity: 0;
           animation: cardSlideIn 0.6s ease forwards;
         }
-
         .social-label {
           color: #556688;
           font-size: 0.85rem;
@@ -730,18 +665,15 @@ function Contact() {
           justify-content: center;
           gap: 8px;
         }
-
         .label-icon {
           font-size: 1.2rem;
         }
-
         .social-icons {
           display: flex;
           justify-content: center;
           gap: 15px;
           flex-wrap: wrap;
         }
-
         .social-link {
           position: relative;
           text-decoration: none;
@@ -759,12 +691,10 @@ function Contact() {
           opacity: 0;
           animation: socialPopIn 0.5s ease forwards;
         }
-
         @keyframes socialPopIn {
           from { opacity: 0; transform: scale(0.5) rotate(-30deg); }
           to { opacity: 1; transform: scale(1) rotate(0deg); }
         }
-
         .social-ring {
           position: absolute;
           width: 100%;
@@ -775,23 +705,19 @@ function Contact() {
           top: -2px;
           left: -2px;
         }
-
         .social-link:hover .social-ring {
           border-color: var(--hover-color);
           animation: ringPulse 1s ease;
         }
-
         @keyframes ringPulse {
           0% { transform: scale(1); opacity: 1; }
           100% { transform: scale(1.3); opacity: 0; }
         }
-
         .social-link:hover {
           transform: translateY(-8px) scale(1.1);
           border-color: var(--hover-color);
           box-shadow: 0 10px 30px rgba(74, 124, 247, 0.2);
         }
-
         .social-tooltip {
           position: absolute;
           bottom: -30px;
@@ -807,22 +733,18 @@ function Contact() {
           border-radius: 6px;
           border: 1px solid rgba(74, 124, 247, 0.1);
         }
-
         .social-link:hover .social-tooltip {
           opacity: 1;
           transform: translateX(-50%) translateY(-5px);
         }
-
         .contact-form {
           display: flex;
           flex-direction: column;
           gap: 18px;
         }
-
         .form-header {
           margin-bottom: 5px;
         }
-
         .form-header h3 {
           font-size: 1.2rem;
           color: #e0e8f0;
@@ -831,25 +753,20 @@ function Contact() {
           align-items: center;
           gap: 10px;
         }
-
         .form-icon {
           font-size: 1.3rem;
         }
-
         .form-subtitle {
           color: #556688;
           font-size: 0.85rem;
         }
-
         .form-group {
           position: relative;
         }
-
         .input-wrapper {
           position: relative;
           transition: 0.3s;
         }
-
         .input-icon {
           position: absolute;
           left: 16px;
@@ -861,21 +778,17 @@ function Contact() {
           pointer-events: none;
           z-index: 2;
         }
-
         .textarea-wrapper .input-icon {
           top: 20px;
           transform: none;
         }
-
         .input-wrapper.focused .input-icon {
           opacity: 1;
           transform: translateY(-50%) scale(1.1);
         }
-
         .textarea-wrapper.focused .input-icon {
           transform: none;
         }
-
         .form-input,
         .form-textarea {
           width: 100%;
@@ -891,20 +804,17 @@ function Contact() {
           position: relative;
           z-index: 1;
         }
-
         .form-textarea {
           padding: 15px 15px 15px 48px;
           resize: vertical;
           min-height: 120px;
         }
-
         .form-input:focus,
         .form-textarea:focus {
           border-color: #4a7cf7;
           box-shadow: 0 0 30px rgba(74, 124, 247, 0.05);
           background: rgba(10, 12, 25, 0.8);
         }
-
         .input-bar {
           position: absolute;
           bottom: 0;
@@ -916,12 +826,10 @@ function Contact() {
           border-radius: 3px;
           z-index: 3;
         }
-
         .input-wrapper.focused .input-bar {
           width: 100%;
           left: 0;
         }
-
         .input-shimmer {
           position: absolute;
           top: 0;
@@ -933,11 +841,9 @@ function Contact() {
           pointer-events: none;
           z-index: 0;
         }
-
         .input-wrapper:hover .input-shimmer {
           left: 100%;
         }
-
         .char-counter {
           position: absolute;
           bottom: 12px;
@@ -946,7 +852,6 @@ function Contact() {
           color: #556688;
           z-index: 2;
         }
-
         .submit-btn {
           padding: 16px 30px;
           border-radius: 14px;
@@ -965,7 +870,6 @@ function Contact() {
           position: relative;
           overflow: hidden;
         }
-
         .btn-shimmer {
           position: absolute;
           top: 0;
@@ -975,31 +879,25 @@ function Contact() {
           background: linear-gradient(90deg, transparent, rgba(74, 124, 247, 0.1), transparent);
           transition: 0.6s;
         }
-
         .submit-btn:hover:not(:disabled) .btn-shimmer {
           left: 100%;
         }
-
         .submit-btn:hover:not(:disabled) {
           transform: translateY(-3px);
           box-shadow: 0 10px 40px rgba(74, 124, 247, 0.25);
           border-color: #4a7cf7;
         }
-
         .submit-btn:disabled {
           opacity: 0.7;
           cursor: not-allowed;
         }
-
         .submit-btn.submitting {
           background: linear-gradient(135deg, #1a2a4a, #2a4a7a);
         }
-
         .submit-btn.success {
           background: linear-gradient(135deg, #065f46, #047857);
           border-color: #4ade80;
         }
-
         .spinner {
           width: 22px;
           height: 22px;
@@ -1008,11 +906,9 @@ function Contact() {
           border-radius: 50%;
           animation: spin 0.8s linear infinite;
         }
-
         @keyframes spin {
           to { transform: rotate(360deg); }
         }
-
         .form-error {
           padding: 12px;
           background: rgba(248, 113, 113, 0.08);
@@ -1022,7 +918,6 @@ function Contact() {
           text-align: center;
           font-size: 0.9rem;
         }
-
         .contact-footer {
           margin-top: 35px;
           padding: 15px;
@@ -1035,48 +930,38 @@ function Contact() {
           color: #445566;
           font-size: 0.9rem;
         }
-
         .footer-emoji {
           animation: footerPulse 2s infinite;
         }
-
         @keyframes footerPulse {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.5; }
         }
-
         @media (max-width: 968px) {
           .contact-content {
             grid-template-columns: 1fr;
           }
-
           .contact-title {
             font-size: 2.5rem;
           }
         }
-
         @media (max-width: 600px) {
           .contact-title {
             font-size: 2rem;
           }
-
           .contact-content {
             padding: 20px;
           }
-
           .card {
             padding: 15px;
           }
-
           .card-icon-wrapper {
             width: 40px;
             height: 40px;
           }
-
           .card-icon {
             font-size: 1.4rem;
           }
-
           .social-link {
             width: 45px;
             height: 45px;
